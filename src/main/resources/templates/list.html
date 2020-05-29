@@ -34,17 +34,19 @@
     </thread>
 
     <tbody>
+    <div th:each="category : ${allcategory}">
         <tr th:each="car : ${category.cars}">
             <td th:text="${car.make}"></td>
             <td th:text="${car.carModel}"></td>
             <td th:text="${car.year}"></td>
             <td th:text="${car.price}"></td>
             <td>
-                <a th:href="@{/details/{id}(id=${category.id})}"><button>Details</button></a>
-                <a th:href="@{/update/{id}(id=${category.id})}"><button>Update</button></a>
-                <a th:href="@{/delete/{id}(id=${category.id})}"><button>Delete</button></a>
+                <a th:href="@{/details/{id}(id=${car.id})}"><button>Details</button></a>
+                <a th:href="@{/update/{id}(id=${car.id})}"><button>Update</button></a>
+                <a th:href="@{/delete/{id}(id=${car.id})}"><button>Delete</button></a>
             </td>
         </tr>
+    </div>
     </tbody>
 </table>
 </body>

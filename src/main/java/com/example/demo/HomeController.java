@@ -64,7 +64,7 @@ public class HomeController {
         model.addAttribute("course", carRepository.findById(id).get());
         Car car = carRepository.findById(id).get();
 
-        return "detailCar";
+        return "details";
     }
 
 }

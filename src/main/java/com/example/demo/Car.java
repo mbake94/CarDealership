@@ -15,6 +15,7 @@ public class Car {
     private String manufacture;
     private String carModel;
     private String make;
+    private String condition;
     private int year;
     private double price;
     private int mpg;
@@ -85,5 +86,13 @@ public class Car {
 
     public void setMake(String make) {
         this.make = make;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 }

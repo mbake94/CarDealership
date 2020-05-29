@@ -18,21 +18,11 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 
+<h2>New Category</h2>
+<form th:action="@{/processcategory}" th:object="${category}" method="post">
+    <input type="hidden" th:field="*{id}">
+    Car Type: <input type="text" th:field="*{carType}"><br>
 
-<h2>New Car</h2>
-<form th:action="@{/processcar}" th:object="${car}" method="post">
-    Make: <input type="text" th:field="*{make}"> <br>
-    Model: <input type="text" th:field="*{carModel}"> <br>
-    Year: <input type="number" th:field="*{year}"> <br>
-    Price: <input type="number" th:field="*{price}"> <br>
-    Miles Per Gallon: <input type="number" th:field="*{mpg}"> <br>
-    Condition: <input type="text" th:field="*{condition}"> <br>
-    Category: <select th:field="*{category}">
-    <option th:each="category : ${allcategory}"
-            th:text="${category.carType}"
-            th:value="${category.id}">
-    </option>
-</select> <br>
     <input type="submit" value="Submit">
 </form>
 </body>

@@ -18,22 +18,35 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 
+<button><a th:href="@{/newcar}">Add Car</a></button>
+<h2>Car Details</h2>
+<table class="table">
+    <thread>
+        <tr>
+            <th scope="col">Make</th>
+            <th scope="col">Model</th>
+            <th scope="col">Year</th>
+            <th scope="col">Price</th>
+            <th scope="col">MPG</th>
+            <th scope="col">Condition</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thread>
 
-<h2>New Car</h2>
-<form th:action="@{/processcar}" th:object="${car}" method="post">
-    Make: <input type="text" th:field="*{make}"> <br>
-    Model: <input type="text" th:field="*{carModel}"> <br>
-    Year: <input type="number" th:field="*{year}"> <br>
-    Price: <input type="number" th:field="*{price}"> <br>
-    Miles Per Gallon: <input type="number" th:field="*{mpg}"> <br>
-    Condition: <input type="text" th:field="*{condition}"> <br>
-    Category: <select th:field="*{category}">
-    <option th:each="category : ${allcategory}"
-            th:text="${category.carType}"
-            th:value="${category.id}">
-    </option>
-</select> <br>
-    <input type="submit" value="Submit">
-</form>
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.make}"></td>
+        <td th:text="${car.carModel}"></td>
+        <td th:text="${car.year}"></td>
+        <td th:text="${car.price}"></td>
+        <td th:text="${car.mpg}"></td>
+        <td th:text="${car.condition}"></td>
+        <td>
+            <a th:href="@{/update/{id}(id=${car.id})}"><button>Update</button></a>
+            <a th:href="@{/delete/{id}(id=${car.id})}"><button>Delete</button></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
