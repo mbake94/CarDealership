@@ -18,20 +18,20 @@ public class HomeController {
     // list objects
     @RequestMapping("/list")
     public String list(Model model){
-        model.addAttribute("allcategory", categoryRepository.findAll());
+        model.addAttribute("allcategories", categoryRepository.findAll());
         return "list";
     }
     // add a new category page
     @RequestMapping("/newcategory")
     public String newCategory(Model model){
-        model.addAttribute("category", new Category());
+        model.addAttribute("category", new Categories());
         return "newcategory";
     }
     // add a new car page
     @RequestMapping("/newcar")
     public String newCar(Model model){
         model.addAttribute("car", new Car());
-        model.addAttribute("allcategory", categoryRepository.findAll());
+        model.addAttribute("allcategories", categoryRepository.findAll());
         return "newcar";
     }
     // process and save added objects
@@ -41,30 +41,31 @@ public class HomeController {
         return "redirect:/list";
     }
     @PostMapping("processcategory")
-    public String procressCategory(@ModelAttribute("category") Category category){
+    public String procressCategory(@ModelAttribute("category") Categories category){
         categoryRepository.save(category);
         return "redirect:/list";
+    }
+
+    // detail of car
+    @RequestMapping("/details/{id}")
+    public String detail(@PathVariable("id") long id, Model model){
+        model.addAttribute("car", carRepository.findById(id).get());
+
+        return "details";
     }
     // update car
     @RequestMapping("/update/{id}")
     public String update(@PathVariable("id") long id, Model model){
         model.addAttribute("car", carRepository.findById(id).get());
-        return "newcar";
+        return "redirect:/newcar";
     }
+
     // delete category
     @RequestMapping("/delete/{id}")
-    public String delete(@PathVariable("id") long id, Model model){
-        Category category = categoryRepository.findById(id).get();
-        categoryRepository.delete(category);
+    public String delete(@PathVariable("id") long id){
+        Car car = new Car();
+        carRepository.deleteById(id);
         return "redirect:/list";
-    }
-    // detail of car
-    @RequestMapping("/details/{id}")
-    public String detail(@PathVariable("id") long id, Model model){
-        model.addAttribute("course", carRepository.findById(id).get());
-        Car car = carRepository.findById(id).get();
-
-        return "details";
     }
 
 }

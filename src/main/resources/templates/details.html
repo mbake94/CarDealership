@@ -18,7 +18,7 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 
-<button><a th:href="@{/newcar}">Add Car</a></button>
+<button><a th:href="@{/list}"><-- Back</a></button>
 <h2>Car Details</h2>
 <table class="table">
     <thread>
@@ -34,18 +34,26 @@
     </thread>
 
     <tbody>
-    <tr th:each="car : ${cars}">
-        <td th:text="${car.make}"></td>
-        <td th:text="${car.carModel}"></td>
-        <td th:text="${car.year}"></td>
-        <td th:text="${car.price}"></td>
-        <td th:text="${car.mpg}"></td>
-        <td th:text="${car.condition}"></td>
-        <td>
-            <a th:href="@{/update/{id}(id=${car.id})}"><button>Update</button></a>
-            <a th:href="@{/delete/{id}(id=${car.id})}"><button>Delete</button></a>
-        </td>
-    </tr>
+        <div th:each="category : ${allcategories}">
+            <tr th:each="car : ${category.carr}">
+                <td th:inline="text">[[${car.make}]]</td>
+                <td th:inline="text">[[${car.carMadel}]]</td>
+                <td th:inline="text">[[${car.year}]]</td>
+                <td th:inline="text">[[${car.price}]]</td>
+                <td th:inline="text">[[${car.mpg}]]</td>
+                <td th:inline="text">[[${car.condition}]]</td>
+<!--                <td th:text="${car.make}"></td>-->
+<!--                <td th:text="${car.carModel}"></td>-->
+<!--                <td th:text="${car.year}"></td>-->
+<!--                <td th:text="${car.price}"></td>-->
+<!--                <td th:text="${car.mpg}"></td>-->
+<!--                <td th:text="${car.condition}"></td>-->
+                <td>
+                    <a th:href="@{/update/{id}(id=${car.id})}"><button>Update</button></a>
+                    <a th:href="@{/delete/{id}(id=${car.id})}"><button>Delete</button></a>
+                </td>
+            </tr>
+        </div>
     </tbody>
 </table>
 </body>

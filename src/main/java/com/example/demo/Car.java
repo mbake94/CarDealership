@@ -10,9 +10,8 @@ public class Car {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
-    private Category category;
+    private Categories category;
 
-    private String manufacture;
     private String carModel;
     private String make;
     private String condition;
@@ -32,20 +31,12 @@ public class Car {
         this.id = id;
     }
 
-    public Category getCategory() {
+    public Categories getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(Categories category) {
         this.category = category;
-    }
-
-    public String getManufacture() {
-        return manufacture;
-    }
-
-    public void setManufacture(String manufacture) {
-        this.manufacture = manufacture;
     }
 
     public String getCarModel() {

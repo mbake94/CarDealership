@@ -4,14 +4,14 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Category {
+public class Categories {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String carType;
 
-    public Category() {
+    public Categories() {
     }
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
