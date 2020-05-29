@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -9,6 +10,7 @@ public class Categories {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotNull
     private String carType;
 
     public Categories() {
@@ -31,5 +33,13 @@ public class Categories {
 
     public void setCarType(String carType) {
         this.carType = carType;
+    }
+
+    public Set<Car> getCars(){
+        return cars;
+    }
+
+    public void setCars(Set<Car> cars){
+        this.cars = cars;
     }
 }

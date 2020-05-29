@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Car {
@@ -12,12 +13,24 @@ public class Car {
     @JoinColumn(name = "category_id")
     private Categories category;
 
+    @NotNull
     private String carModel;
+
+    @NotNull
     private String make;
+
+    @NotNull
     private String condition;
+
+    @NotNull
     private int year;
+
+    @NotNull
     private double price;
+
+    @NotNull
     private int mpg;
+
 
     public Car() {
     }
