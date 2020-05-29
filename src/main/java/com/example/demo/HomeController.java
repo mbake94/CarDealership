@@ -3,10 +3,7 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 
@@ -21,20 +18,20 @@ public class HomeController {
     @RequestMapping("/")
     public String list(Model model){
         model.addAttribute("allcategories", categoryRepository.findAll());
-        return "/list";
+        return "list";
     }
     // add a new category page
     @RequestMapping("/newcategory")
     public String newCategory(Model model){
         model.addAttribute("category", new Categories());
-        return "/newcategory";
+        return "newcategory";
     }
     // add a new car page
     @RequestMapping("/newcar")
     public String newCar(Model model){
         model.addAttribute("car", new Car());
         model.addAttribute("allcategories", categoryRepository.findAll());
-        return "/newcar";
+        return "newcar";
     }
     // process and save added objects
     @PostMapping("processcar")
@@ -54,14 +51,14 @@ public class HomeController {
         model.addAttribute("cardetails", carRepository.findById(id).get());
         System.out.println("<<<<-------------DETAILS-------------->>>>");
 
-        return "/details";
+        return "details";
     }
     // update car
     @RequestMapping("/update/{id}")
     public String update(@PathVariable("id") long id, Model model){
         model.addAttribute("car", carRepository.findById(id).get());
         System.out.println("<<<<-------------UPDATING-------------->>>>");
-        return "/newcar";
+        return "newcar";
     }
 
     // delete category
@@ -70,7 +67,7 @@ public class HomeController {
        model.addAttribute("cars", carRepository.findById(id).get());
        Car cars = carRepository.findById(id).get();
        System.out.println("<<<<-------------DELETING-------------->>>>");
-       carRepository.delete(cars);
+       carRepository.delete(car);
        return "redirect:/";
 
     }
